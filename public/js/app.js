@@ -21,9 +21,12 @@ $(document).ready(function(){
                           .replace("{{name}}", personaje.name)
                           .replace("{{url}}", personaje.url);
         });
+
+        var next = $("#next").replace("http", "https");
+        var previous = $("#previous").replace("http", "https");
         $("#people").html(personajes);
-        $("#next").attr("data-url", replace("https").next);
-        $("#previous").attr("data-url", replace("https").previous);
+        $("#next").attr("data-url", next.next);
+        $("#previous").attr("data-url", previous.previous);
         if(!response.next){
             $("#next").fadeOut();
         } else {
