@@ -24,10 +24,7 @@ $(document).ready(function(){
 
     var mostrarOpciones = function(response){
         var especies = "";
-
-        if(response.name != null)
-        var especieData = response.name.replace("http", "https");
-            especies += template.replace("{{name}}" , especieData)
+            especies = template.replace("{{name}}" , response.name)
             $("#people").append(especies);
                 especies= "";    
     }
@@ -39,8 +36,9 @@ $(document).ready(function(){
         $("#people").html("");
         for (var i = 0; i < longitud; i++) {
 
-            var  posicion= array[i].substr(0,longitud-1);
-            var urlEspecies = "//swapi.co/api/people/" + posicion;
+            var  posicion= array[i].substr(-3);
+            var replace = urlEspecies.replace("http://swapi.co/api/people/", "https://swapi.co/api/people/")
+            var urlEspecies = replace + posicion;
             $.getJSON(urlEspecies,mostrarOpciones);
         }
     }             
