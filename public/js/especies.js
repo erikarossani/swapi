@@ -24,7 +24,10 @@ $(document).ready(function(){
 
     var mostrarOpciones = function(response){
         var especies = "";
-            especies += template.replace("{{name}}" , response.name)
+
+        if(response.next != null)
+        var especieData = response.name.replace("http", "https");
+            especies += template.replace("{{name}}" , especieData)
             $("#people").append(especies);
                 especies= "";    
     }
