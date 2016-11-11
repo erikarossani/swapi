@@ -22,8 +22,8 @@ $(document).ready(function(){
                           .replace("{{url}}", personaje.url);
         });
         $("#people").html(personajes);
-        $("#next").attr("data-url", response.next);
-        $("#previous").attr("data-url", response.previous);
+        $("#next").attr("data-url", replace("https").next);
+        $("#previous").attr("data-url", replace("https").previous);
         if(!response.next){
             $("#next").fadeOut();
         } else {

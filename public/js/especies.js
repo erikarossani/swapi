@@ -45,7 +45,7 @@ $(document).ready(function(){
                 posicion += especie.people[i].substr(-2);
             }
             
-
+            console.log(posicion);
             var mostrarPersonajes = function(response){
 
             	var array = $(this).val().split("/");
