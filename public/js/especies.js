@@ -5,7 +5,7 @@ var template = '<div class="col s12 m6">' +
                             '<p>Hi, my name is <strong>{{name}}</strong></p>' +
                         '</div>' +
                         '<div class="card-action">' +
-                            '<a data-show-url="{{url}}" class="blue-text text-darken-2 about">Detalle personaje</a>' +
+                            '<a data-show-url="{{url}}" class="blue-text text-darken-2about">Detalle personaje</a>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -13,21 +13,28 @@ var template = '<div class="col s12 m6">' +
 
 $(document).ready(function(){
 
-    var formatResponse = function(response){          
-        $.each(response.results, function(i, personaje){
-            $("#especie").append('<option value ="' + personaje.people+ '">' + personaje.name + '</option>');
+    var nombreEspecies = function(response){        
+        var especies  = "";
+        $.each(response.results, function(i, especie){
+            var posicion = "";
+            var urlEspecies = "https://swapi.co/api/people/";
+
+            $.each(especie.people, function (i, valor) {
+            posicion += valor.replace( urlEspecies, "").replace("/", ",");
+            }); 
+
+             $("#especie").append('<option value ="' + posicion.slice(0,-1) + '">' + especie.name + '</option>');
+
         });
     };
-
-    $.getJSON("//swapi.co/api/species/", formatResponse);
-
+    $.getJSON("https://swapi.co/api/species/", nombreEspecies);
 
     var mostrarOpciones = function(response){
         var especies = "";
             especies = template.replace("{{name}}" , response.name)
             $("#people").append(especies);
                 especies= "";    
-    }
+    };
            
 
     var mostrarPersonajes = function(response){
@@ -36,12 +43,11 @@ $(document).ready(function(){
         $("#people").html("");
         for (var i = 0; i < longitud; i++) {
 
-            var  posicion= array[i].substr(-3);
-            var replace = urlEspecies.replace("http://swapi.co/api/people/", "https://swapi.co/api/people/")
-            var urlEspecies = replace + posicion;
+            var  posicion= array[i].substring(0, longitud-1);
+            var urlEspecies = "https://swapi.co/api/people/" + posicion;
             $.getJSON(urlEspecies,mostrarOpciones);
         }
-    }             
+    };             
 
         $("#contenedor").on("change", ("#especie"), mostrarPersonajes);
 
