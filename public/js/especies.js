@@ -35,21 +35,24 @@ $(document).ready(function(){
 			posicion += valor.replace( urlEspecies, "");
 		    });
 
+            especies += categoria
+                     .replace("{{num}}", posicion)
+                     .replace("{{especie}}", especie.name);
+           
+
             for(var i = 0, l = especie.people.length; i < l; i++){
-                posicion += especie.people[i].substr(-3);
+                posicion += especie.people[i].substr(-2);
             }
             
             console.log(posicion);
-            especies += categoria
-                        .replace("{{num}}", posicion)
-                        .replace("{{especie}}",especie.name);
+
 
             var mostrarPersonajes = function(response){
 
             	var array = $(this).val().split("/");
                 for(var i = 0, l = response.length; i < l; i++){
-                    $.getJSON(urlEspecies + posicion, formatResponse);
-                    var nameSpecie = template.replace("{{name}}", response.name);
+                    $.getJSON(urlEspecies + posicion[i] , formatResponse);
+                    var caracteriscaSpecie = template.replace("{{name}}", response.name);
                 }
              }             
 
