@@ -30,7 +30,7 @@ $(document).ready(function(){
 
         $.each(response.results, function(i, especie){
             var posicion = "";
-            var urlEspecies = "swapi.co/api/people/";
+            var urlEspecies = "//swapi.co/api/people/";
 
             $.each(especie.people, function (i, valor) {
 			posicion += valor.replace( urlEspecies, "");
@@ -61,6 +61,6 @@ $(document).ready(function(){
         $("#especie").append(especies);
     }
     
-    $.getJSON("http://swapi.co/api/species/", nombreEspecies);
+    $.getJSON("//swapi.co/api/species/", nombreEspecies);
 
 });
