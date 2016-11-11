@@ -1,5 +1,3 @@
-var categoria = '<option value="{{num}}">{{especie}}</option>';
-
 var template = '<div class="col s12 m6">' +
                 '<div class="card horizontal hoverable">' +
                     '<div class="card-stacked">' +
@@ -16,51 +14,34 @@ var template = '<div class="col s12 m6">' +
 $(document).ready(function(){
 
     var formatResponse = function(response){          
-        var personajes  = "";
         $.each(response.results, function(i, personaje){
-            personajes += template
-                          .replace("{{name}}", personaje.name)
-                          .replace("{{url}}", personaje.url);
+            $("#especie").append('<option value ="' + personaje.people+ '">' + personaje.name + '</option>');
         });
-        $("#people").html(personajes);
     };
 
-    var nombreEspecies = function(response){        
-        var especies  = "";
+    $.getJSON("//swapi.co/api/species/", formatResponse);
 
-        $.each(response.results, function(i, especie){
-            var posicion = "";
-            var urlEspecies = "//swapi.co/api/people/";
 
-            $.each(especie.people, function (i, valor) {
-			posicion += valor.replace( urlEspecies, "");
-		    });
-
-            especies += categoria
-                     .replace("{{num}}", posicion)
-                     .replace("{{especie}}", especie.name);
+    var mostrarOpciones = function(response){
+        var especies = "";
+            especies += template.replace("{{name}}" , response.name)
+            $("#people").append(especies);
+                especies= "";    
+    }
            
 
-            for(var i = 0, l = especie.people.length; i < l; i++){
-                posicion += especie.people[i].substr(-2);
-            }
-            
-            console.log(posicion);
-            var mostrarPersonajes = function(response){
+    var mostrarPersonajes = function(response){
+        var array = $(this).val().split("/");
+        var longitud = array.length;
+        $("#people").html("");
+        for (var i = 0; i < longitud; i++) {
 
-            	var array = $(this).val().split("/");
-                for(var i = 0; i < array.length; i++){
-                    $.getJSON(urlEspecies + array[i] , formatResponse);
-                    var caracteriscaSpecie = template.replace("{{name}}", response.name);
-                }
-             }             
+            var  posicion= array[i].substr(-3);
+            var urlEspecies = "//swapi.co/api/people/" + posicion;
+            $.getJSON(urlEspecies,mostrarOpciones);
+        }
+    }             
 
-             $("#contenedor").on("change", ("#especie"), mostrarPersonajes);
-        });
-
-        $("#especie").append(especies);
-    }
-    
-    $.getJSON("//swapi.co/api/species/", nombreEspecies);
+        $("#contenedor").on("change", ("#especie"), mostrarPersonajes);
 
 });
