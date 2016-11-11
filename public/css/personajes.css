@@ -1,0 +1,27 @@
+body{
+	background: url(../img/fondo2.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.total{
+	padding: 10px;
+	color: white;
+}
+
+.inicio{
+	margin-top: 20%;
+	margin-left: 2%;
+	position: fixed;
+}
+
+#contenedor{
+	margin-top: 5%;
+	margin-bottom: 2%;
+}
+
+.lista{
+	font-size: 1.5em;
+	color: #fff;
+
+}

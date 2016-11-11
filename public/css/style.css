@@ -1,6 +1,21 @@
-.total {
-    background-color: black;
-    color: #fff ;
-    padding: 10px;
-    border-radius: 50%;
+
+body{
+	background: url(../img/fondo.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
 }
+
+.top{
+   margin-top: 10%;
+}
+
+.btn1{
+	margin-left: 70px;
+}
+
+.btn2{
+	margin-left: 700px;
+}
+
+
