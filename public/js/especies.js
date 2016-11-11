@@ -25,7 +25,7 @@ $(document).ready(function(){
     var mostrarOpciones = function(response){
         var especies = "";
 
-        if(response.next != null)
+        if(response.name != null)
         var especieData = response.name.replace("http", "https");
             especies += template.replace("{{name}}" , especieData)
             $("#people").append(especies);
