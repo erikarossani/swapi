@@ -5,7 +5,7 @@ var template = '<div class="col s12 m6">' +
                             '<p>Hi, my name is <strong>{{name}}</strong></p>' +
                         '</div>' +
                         '<div class="card-action">' +
-                            '<a data-show-url="{{url}}" class="about">Detalle personaje</a>' +
+                            '<a data-show-url="{{url}}" class="blue-text text-darken-2 about">Detalle personaje</a>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +

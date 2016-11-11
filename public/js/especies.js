@@ -27,6 +27,7 @@ $(document).ready(function(){
 
     var nombreEspecies = function(response){        
         var especies  = "";
+
         $.each(response.results, function(i, especie){
             var posicion = "";
             var urlEspecies = "http://swapi.co/api/people/";
@@ -50,8 +51,8 @@ $(document).ready(function(){
             var mostrarPersonajes = function(response){
 
             	var array = $(this).val().split("/");
-                for(var i = 0, l = response.length; i < l; i++){
-                    $.getJSON(urlEspecies + posicion[i] , formatResponse);
+                for(var i = 0, l = array.length; i < l; i++){
+                    $.getJSON(urlEspecies + array[i] , formatResponse);
                     var caracteriscaSpecie = template.replace("{{name}}", response.name);
                 }
              }             
