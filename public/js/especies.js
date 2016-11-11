@@ -36,7 +36,7 @@ $(document).ready(function(){
         $("#people").html("");
         for (var i = 0; i < longitud; i++) {
 
-            var  posicion= array[i].substr(-3);
+            var  posicion= array[i].substr(0,longitud-1);
             var urlEspecies = "//swapi.co/api/people/" + posicion;
             $.getJSON(urlEspecies,mostrarOpciones);
         }
