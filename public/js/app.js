@@ -21,10 +21,17 @@ $(document).ready(function(){
                           .replace("{{name}}", personaje.name)
                           .replace("{{url}}", personaje.url);
         });
-        
+
+        if(response.next != null)
+        var nextData = response.next.replace("http", "https");
+
+        if(response.previous != null)
+        var previousData = response.previous.replace("http", "https");
+
         $("#people").html(personajes);
-        $("#next").attr("data-url", response.next);
-        $("#previous").attr("data-url", response.previous);
+        $("#next").attr("data-url", nextData);
+        $("#previous").attr("data-url", previousData);
+        
         if(!response.next){
             $("#next").fadeOut();
         } else {
