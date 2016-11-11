@@ -7,7 +7,7 @@ var template = '<div class="col s12 m6">' +
                             '<p>Hi, my name is <strong>{{name}}</strong></p>' +
                         '</div>' +
                         '<div class="card-action">' +
-                            '<a data-show-url="{{url}}" class="about">Detalle personaje</a>' +
+                            '<a data-show-url="{{url}}" class="blue-text text-darken-2 about">Detalle personaje</a>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -30,7 +30,7 @@ $(document).ready(function(){
 
         $.each(response.results, function(i, especie){
             var posicion = "";
-            var urlEspecies = "http://swapi.co/api/people/";
+            var urlEspecies = "swapi.co/api/people/";
 
             $.each(especie.people, function (i, valor) {
 			posicion += valor.replace( urlEspecies, "");
@@ -45,13 +45,11 @@ $(document).ready(function(){
                 posicion += especie.people[i].substr(-2);
             }
             
-            console.log(posicion);
-
 
             var mostrarPersonajes = function(response){
 
             	var array = $(this).val().split("/");
-                for(var i = 0, l = array.length; i < l; i++){
+                for(var i = 0; i < array.length; i++){
                     $.getJSON(urlEspecies + array[i] , formatResponse);
                     var caracteriscaSpecie = template.replace("{{name}}", response.name);
                 }
