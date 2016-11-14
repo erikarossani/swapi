@@ -33,11 +33,11 @@ $(document).ready(function(){
         var array = $(this).val().split("/"); 
             array.splice(0,5);
             var borrar= array.filter(Boolean);
-        var longitud = array.length;
+        var longitud = borrar.length;
         $("#people").html("");
         for (var i = 0; i < longitud; i++) {
 
-            var  posicion= array[i];
+            var  posicion= borrar[i];
             var urlEspecies = "//swapi.co/api/people/" + posicion +"/";
             $.getJSON(urlEspecies,mostrarOpciones);
         }
