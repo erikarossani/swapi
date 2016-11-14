@@ -31,7 +31,7 @@ $(document).ready(function(){
 
     var mostrarPersonajes = function(response){
         var array = $(this).val().split("/"); 
-            array.slice(0,5);
+            array.splice(0,5);
             array.filter(Boolean);
         var longitud = array.length;
         $("#people").html("");
