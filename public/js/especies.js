@@ -32,7 +32,7 @@ $(document).ready(function(){
     var mostrarPersonajes = function(response){
         var array = $(this).val().split("/"); 
             array.splice(0,5);
-            array.filter(Boolean);
+            var borrar= array.filter(Boolean);
         var longitud = array.length;
         $("#people").html("");
         for (var i = 0; i < longitud; i++) {
